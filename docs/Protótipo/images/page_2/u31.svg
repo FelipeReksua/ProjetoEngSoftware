@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="62px" height="40px" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask fill="white" id="clip10">
+      <path d="M 0 21.1764705882353  L 0 8.82352941176471  C 0 3.88235294117645  1.76000000000004 0  4 0  L 23.2 0  L 36.8 0  L 48 0  C 50.24 0  52 3.88235294117645  52 8.82352941176471  L 52 21.1764705882353  C 52 26.1176470588236  50.24 30  48 30  L 4 30  C 1.76000000000004 30  0 26.1176470588236  0 21.1764705882353  Z " fill-rule="evenodd" />
+    </mask>
+    <filter x="509px" y="436px" width="62px" height="40px" filterUnits="userSpaceOnUse" id="filter11">
+      <feOffset dx="5" dy="5" in="SourceAlpha" result="shadowOffsetInner" />
+      <feGaussianBlur stdDeviation="2.5" in="shadowOffsetInner" result="shadowGaussian" />
+      <feComposite in2="shadowGaussian" operator="atop" in="SourceAlpha" result="shadowComposite" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.349019607843137 0  " in="shadowComposite" />
+    </filter>
+    <g id="widget12">
+      <path d="M 0 21.1764705882353  L 0 8.82352941176471  C 0 3.88235294117645  1.76000000000004 0  4 0  L 23.2 0  L 36.8 0  L 48 0  C 50.24 0  52 3.88235294117645  52 8.82352941176471  L 52 21.1764705882353  C 52 26.1176470588236  50.24 30  48 30  L 4 30  C 1.76000000000004 30  0 26.1176470588236  0 21.1764705882353  Z " fill-rule="nonzero" fill="#ffffff" stroke="none" transform="matrix(1 0 0 1 509 436 )" />
+      <path d="M 0 21.1764705882353  L 0 8.82352941176471  C 0 3.88235294117645  1.76000000000004 0  4 0  L 23.2 0  L 36.8 0  L 48 0  C 50.24 0  52 3.88235294117645  52 8.82352941176471  L 52 21.1764705882353  C 52 26.1176470588236  50.24 30  48 30  L 4 30  C 1.76000000000004 30  0 26.1176470588236  0 21.1764705882353  Z " stroke-width="2" stroke="#797979" fill="none" transform="matrix(1 0 0 1 509 436 )" mask="url(#clip10)" />
+    </g>
+  </defs>
+  <g transform="matrix(1 0 0 1 -509 -436 )">
+    <use xlink:href="#widget12" filter="url(#filter11)" />
+    <use xlink:href="#widget12" />
+  </g>
+</svg>
