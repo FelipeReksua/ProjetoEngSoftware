@@ -1,0 +1,17 @@
+language: php
+php:
+  - 7.2
+script:
+  - composer install
+  - cp .env.travis .env
+  - php artisan key:generate
+  - php artisan migrate
+  - vendor/bin/phpunit
+deploy:
+  provider: heroku
+  api-key: 
+    secure: $HEROKU_API_KEY
+  app: projetoesphp
+  strategy: git
+  run: "php artisan key:generate"
+  run: "php artisan migrate"
