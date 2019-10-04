@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contato;
 
-class ContatoController extends Controller
+class RankedController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,10 +13,8 @@ class ContatoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
-        $contacts = Contato::all();
-
-        return view('contatos.index', compact('contacts'));
+    {
+        return view('list');
     }
 
     /**
@@ -26,7 +24,7 @@ class ContatoController extends Controller
      */
     public function create()
     {
-        return view('contatos.create');
+        return view('ranked.create');
     }
 
     /**
@@ -35,25 +33,25 @@ class ContatoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required|email:rfc,dns'
-        ]);
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'first_name'=>'required',
+    //         'last_name'=>'required',
+    //         'email'=>'required|email:rfc,dns'
+    //     ]);
 
-        $contato = new Contato([
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'email' => $request->get('email'),
-            'job_title' => $request->get('job_title'),
-            'city' => $request->get('city'),
-            'country' => $request->get('country')
-        ]);
-        $contato->save();
-        return redirect('/contatos')->with('success', 'Contato salvo!');
-    }
+    //     $contato = new Contato([
+    //         'first_name' => $request->get('first_name'),
+    //         'last_name' => $request->get('last_name'),
+    //         'email' => $request->get('email'),
+    //         'job_title' => $request->get('job_title'),
+    //         'city' => $request->get('city'),
+    //         'country' => $request->get('country')
+    //     ]);
+    //     $contato->save();
+    //     return redirect('/contatos')->with('success', 'Contato salvo!');
+    // }
 
     /**
      * Display the specified resource.

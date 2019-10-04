@@ -14,7 +14,7 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('contatos.store') }}">
+      <form method="post" action="{{ route('ranked.store') }}">
           @csrf
           <div class="form-group">    
               <label for="first_name">Nome:</label>

@@ -15,4 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('contatos', 'ContatoController');
+// Route::resource('cadastro', 'RankedController');
+// Route::resource('contatos', 'ContatoController');
+
+
+// Route::group(['middleware' => 'auth',], function () {
+Route::group([], function () {
+    Route::group([
+	], function () {
+		Route::get('/cadastro', ["uses" => 'RankedController@create', "as" => "create"]);
+		Route::post('/store', ["uses" => 'RankedController@store', "as" => "store"]);
+	});
+});
