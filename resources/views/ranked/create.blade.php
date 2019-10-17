@@ -1,9 +1,13 @@
-@extends('base')
+@extends('layouts.main')
 
-@section('main')
+@section('content')
+@extends('layouts.topbar')
+
+@section('content')
 <div class="row">
  <div class="col-sm-8 offset-sm-2">
-    <h1>Adicionar contato</h1>
+    <h1>Adicionar pessoa</h1>
+    {{dump(url()->current())}}
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
@@ -14,7 +18,7 @@
         </ul>
       </div><br />
     @endif
-      <form method="post" action="{{ route('ranked.store') }}">
+      <form method="post" action="{{-- {{ route('ranked.store') }} --}}">
           @csrf
           <div class="form-group">    
               <label for="first_name">Nome:</label>
@@ -43,9 +47,8 @@
               <input type="text" class="form-control" name="job_title" value="{{ old('job_title') }}"/>
           </div>                         
           <button type="submit" class="btn btn-primary">Adicionar contato</button>
-          <a href="{{ route('contatos.index') }}" class="btn btn-warning">Cancelar</a>
+          <a href="{{-- {{ route('contatos.index') }} --}}" class="btn btn-warning">Cancelar</a>
       </form>
   </div>
-</div>
 </div>
 @endsection

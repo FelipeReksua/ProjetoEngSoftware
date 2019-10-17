@@ -4,6 +4,15 @@
     padding-bottom: 80px;
 }
 
+.logo{
+    height: 65px;
+    max-width: 100%;
+}
+
+.bg-light{
+    background-color: #f7f7f7 !important; 
+}
+
 .jumbotron .btn-primary {
     background: #0c10e0;
     border-color: #0e0379;

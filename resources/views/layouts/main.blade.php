@@ -14,10 +14,18 @@
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+
+    @hasSection('css')
+        @yield('css')
+    @endif
 </head>
 <body>
     @hasSection('content')
         @yield('content')
+    @endif
+
+    @hasSection('js')
+        @yield('js')
     @endif
 </body>
 </html>
