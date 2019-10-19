@@ -1,3 +1,84 @@
+/*Left bar*/
+
+body {
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+/* Toggle Styles */
+
+#geral-content {
+  z-index: 1;
+  padding-left: 250px;
+  padding-top: 100px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#content {
+  width: 100%;
+  position: relative;
+  margin-right: 0;
+}
+
+#sidebar {
+  z-index: 1000;
+  position: fixed;
+  top: 90px;
+  left: 250px;
+  width: 250px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #f7f7f7;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar .nav li{
+  width: 250px;
+  border-bottom: 1px solid #455A64;
+  padding: 16px 24px;
+}
+
+#sidebar .nav li a{
+  color: rgba(0,0,0,.9);
+  background: none;
+  font-size: 14px;
+}
+
+#sidebar .nav a:hover{
+  background: none;
+  color: #ECEFF1;
+}
+
+#sidebar .nav a i{
+  margin-right: 16px;
+}
+
+/*End left bar*/
+
+/*top bar*/
+#topbar{
+    z-index: 1000;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    margin-bottom: 100px !important;
+}
+
+.navbar-brand{
+    text-align: center;
+    width: 250px;
+}
+
 .jumbotron {
     background: #2f538c;
     color: white;

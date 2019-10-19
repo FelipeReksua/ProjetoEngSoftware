@@ -20,9 +20,11 @@
     @endif
 </head>
 <body>
-    @hasSection('content')
-        @yield('content')
-    @endif
+    <div id="geral-content">
+        @hasSection('content')
+            @yield('content')
+        @endif
+    </div>
 
     @hasSection('js')
         @yield('js')

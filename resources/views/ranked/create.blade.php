@@ -4,10 +4,30 @@
 @extends('layouts.topbar')
 
 @section('content')
+
+<div id="sidebar">
+    <ul class="nav">
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-view-dashboard"></i> Ranking
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-link"></i> Adicionar pessoa
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="zmdi zmdi-widgets"></i> Contemplados
+        </a>
+      </li>
+    </ul>
+  </div>
+
 <div class="row">
- <div class="col-sm-8 offset-sm-2">
-    <h1>Adicionar pessoa</h1>
-    {{dump(url()->current())}}
+ <div class="col-sm-8 offset-sm-1">
+    {{-- {{dump(url()->current())}} --}}
   <div>
     @if ($errors->any())
       <div class="alert alert-danger">
