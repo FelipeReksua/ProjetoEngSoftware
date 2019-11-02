@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contato extends Model
+class Pessoa extends Model
 {
     protected $fillable = [
         'first_name',

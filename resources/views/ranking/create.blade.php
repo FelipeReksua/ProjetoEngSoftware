@@ -8,17 +8,17 @@
   <div id="sidebar">
     <ul class="nav">
     <li>
-      <a href="#">
+      <a href="/ranking">
         <i class="zmdi zmdi-view-dashboard"></i> Ranking
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="/ranking/cadastro">
         <i class="zmdi zmdi-link"></i> Adicionar pessoa
       </a>
     </li>
     <li>
-      <a href="#">
+      <a href="/ranking/contemplados">
         <i class="zmdi zmdi-widgets"></i> Contemplados
       </a>
     </li>
@@ -27,7 +27,6 @@
 
   <div class="row" id="geral-content">
    <div class="col-sm-8 offset-sm-1">
-      {{-- {{dump(url()->current())}} --}}
       <div>
         @if ($errors->any())
           <div class="alert alert-danger">
@@ -38,16 +37,16 @@
             </ul>
           </div><br />
         @endif
-          <form method="post" action="{{-- {{ route('ranked.store') }} --}}">
+          <form method="post" action="{{ route('ranking.store') }}">
               @csrf
               <div class="form-group">    
                   <label for="first_name">Nome:</label>
-                  <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}"/>
+                  <input type="text" required class="form-control" name="first_name" value="{{ old('first_name') }}"/>
               </div>
 
               <div class="form-group">
                   <label for="last_name">Sobrenome:</label>
-                  <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}"/>
+                  <input type="text" required class="form-control" name="last_name" value="{{ old('last_name') }}"/>
               </div>
 
               <div class="form-group">
@@ -68,7 +67,7 @@
               </div>     
               <div class="row">
                 <div class="text-left col-md-6">
-                  <a href="{{-- {{ route('contatos.index') }} --}}" class="btn btn-warning text-left">Cancelar</a>
+                  <a href="{{ route('ranking.index') }}" class="btn btn-warning text-left">Cancelar</a>
                 </div>                    
                 <div class="text-right col-md-6">
                   <button type="submit" class="btn btn-primary">Adicionar contato</button>

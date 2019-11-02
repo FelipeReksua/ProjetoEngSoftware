@@ -6,6 +6,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="row md-12" id="navbarNav">
-      <h4>Adicionar pessoa</h4>
+      <h4>{{ $page }}</h4>
     </div>
 </nav>

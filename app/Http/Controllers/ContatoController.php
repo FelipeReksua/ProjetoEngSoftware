@@ -29,6 +29,11 @@ class ContatoController extends Controller
         return view('contatos.create');
     }
 
+    public function cadastro()
+    {
+        return view('contatos.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

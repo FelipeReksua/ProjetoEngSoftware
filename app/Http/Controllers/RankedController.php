@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Contato;
+use App\Pessoa;
 
 class RankedController extends Controller
 {
@@ -14,17 +14,22 @@ class RankedController extends Controller
      */
     public function index()
     {
-        return view('list');
+        $pessoas = Pessoa::all();
+        return view('ranking.list')->with(
+            array(
+                'page' => 'Ranking',
+                'pessoas' => $pessoas
+            )
+        );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function cadastro()
     {
-        return view('ranked.create');
+        return view('ranking.create')->with(
+            array(
+                'page' => 'Cadastrar pessoa'
+            )
+        );
     }
 
     /**
@@ -33,25 +38,28 @@ class RankedController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'first_name'=>'required',
-    //         'last_name'=>'required',
-    //         'email'=>'required|email:rfc,dns'
-    //     ]);
+    public function store(Request $request)
+    {;
+        $request->validate([
+            'first_name'=>'required',
+            'last_name'=>'required'
+        ]);
 
-    //     $contato = new Contato([
-    //         'first_name' => $request->get('first_name'),
-    //         'last_name' => $request->get('last_name'),
-    //         'email' => $request->get('email'),
-    //         'job_title' => $request->get('job_title'),
-    //         'city' => $request->get('city'),
-    //         'country' => $request->get('country')
-    //     ]);
-    //     $contato->save();
-    //     return redirect('/contatos')->with('success', 'Contato salvo!');
-    // }
+        $contato = new Pessoa([
+            'first_name' => $request->get('first_name'),
+            'last_name' => $request->get('last_name'),
+            'email' => $request->get('email'),
+            'job_title' => $request->get('job_title'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country')
+        ]);
+        $contato->save();
+        return redirect('/ranking')->with(
+            array(
+                'page' => 'Ranking'
+            )
+        );
+    }
 
     /**
      * Display the specified resource.
@@ -73,9 +81,9 @@ class RankedController extends Controller
     public function edit($id)
     {
         $contact = Contato::find($id);
-        if($contact)
+        if ($contact)
             return view('contatos.edit', compact('contact'));
-        else{
+        else {
             abort(404);
         }
     }
@@ -104,7 +112,12 @@ class RankedController extends Controller
         $contact->country = $request->get('country');
         $contact->save();
 
-        return redirect('/contatos')->with('success', 'Contato atualizado!');
+        return redirect('/contatos')->with(
+            array(
+                'page' => 'Ranking',
+                'success' => 'Contato atualizado!'
+            )
+        );
     }
 
     /**
