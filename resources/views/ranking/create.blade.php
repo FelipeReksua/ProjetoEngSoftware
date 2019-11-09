@@ -39,40 +39,109 @@
         @endif
           <form method="post" action="{{ route('ranking.store') }}">
               @csrf
-              <div class="form-group">    
-                  <label for="first_name">Nome:</label>
-                  <input type="text" required class="form-control" name="first_name" value="{{ old('first_name') }}"/>
-              </div>
+              <div class="row mb-4">
+                <div class="form-group col-md-12">    
+                    <label for="first_name">Nome:</label>
+                    <input type="text" required class="form-control" name="first_name" value="{{ old('first_name') }}"/>
+                </div>
 
-              <div class="form-group">
-                  <label for="last_name">Sobrenome:</label>
-                  <input type="text" required class="form-control" name="last_name" value="{{ old('last_name') }}"/>
-              </div>
+                <div class="form-group col-md-12">
+                    <label for="last_name">Sobrenome:</label>
+                    <input type="text" required class="form-control" name="last_name" value="{{ old('last_name') }}"/>
+                </div>
 
-              <div class="form-group">
-                  <label for="email">Email:</label>
-                  <input type="text" class="form-control" name="email" value="{{ old('email') }}"/>
-              </div>
-              <div class="form-group">
-                  <label for="city">Cidade:</label>
-                  <input type="text" class="form-control" name="city" value="{{ old('city') }}"/>
-              </div>
-              <div class="form-group">
-                  <label for="country">País:</label>
-                  <input type="text" class="form-control" name="country" value="{{ old('country') }}"/>
-              </div>
-              <div class="form-group">
-                  <label for="job_title">Profissão:</label>
-                  <input type="text" class="form-control" name="job_title" value="{{ old('job_title') }}"/>
+                <div class="form-group col-md-12">
+                    <label for="email">Email:</label>
+                    <input type="text" class="form-control" name="email" value="{{ old('email') }}"/>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" required class="form-control" name="cpf" value="{{ old('cpf') }}"/>
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label for="phone">Telefone:</label>
+                    <input type="text" class="form-control" name="phone" value="{{ old('phone') }}"/>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="childrens">Filhos:</label>
+                    <input type="number" required min="0" class="form-control" name="childrens" value="{{ old('childrens') }}"/>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="state">Estado:</label>
+                    <select required class="form-control" name="state">
+                      <option value="">-- Selecione --</option>
+                      <option value="AC">AC</option>
+                      <option value="AL">AL</option>
+                      <option value="AP">AP</option>
+                      <option value="AM">AM</option>
+                      <option value="BA">BA</option>
+                      <option value="CE">CE</option>
+                      <option value="DF">DF</option>
+                      <option value="ES">ES</option>
+                      <option value="GO">GO</option>
+                      <option value="MA">MA</option>
+                      <option value="MT">MT</option>
+                      <option value="MS">MS</option>
+                      <option value="MG">MG</option>
+                      <option value="PA">PA</option>
+                      <option value="PB">PB</option>
+                      <option value="PR">PR</option>
+                      <option value="PE">PE</option>
+                      <option value="PI">PI</option>
+                      <option value="RJ">RJ</option>
+                      <option value="RN">RN</option>
+                      <option value="RS">RS</option>
+                      <option value="RO">RO</option>
+                      <option value="RR">RR</option>
+                      <option value="SC">SC</option>
+                      <option value="SP">SP</option>
+                      <option value="SE">SE</option>
+                      <option value="TO">TO</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-8">
+                    <label for="city">Cidade:</label>
+                    <input type="text" required class="form-control" name="city" value="{{ old('city') }}"/>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="social_project">Outro projeto social:</label>
+                    <select required class="form-control" name="social_project">
+                      <option value="Sim">Sim</option>
+                      <option value="Não">Não</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="employee">Empregado:</label>
+                    <select required class="form-control" name="employee">
+                      <option value="Sim">Sim</option>
+                      <option value="Não">Não</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="job_title">Profissão:</label>
+                    <input type="text" class="form-control" name="job_title" value="{{ old('job_title') }}"/>
+                </div>
               </div>     
+
               <div class="row">
                 <div class="text-left col-md-6">
-                  <a href="{{ route('ranking.index') }}" class="btn btn-warning text-left">Cancelar</a>
+                  <a href="{{ route('ranking.index') }}">
+                    <button type="button" class="btn btn-dark text-left">Cancelar</button>
+                  </a>
                 </div>                    
                 <div class="text-right col-md-6">
-                  <button type="submit" class="btn btn-primary">Adicionar contato</button>
+                  <button type="submit" class="btn btn-primary">Adicionar pessoa</button>
                 </div>                    
               </div>
+
           </form>
       </div>
     </div>

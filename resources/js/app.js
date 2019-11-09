@@ -30,3 +30,28 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(function(){
+    $(document).on('click', '.confirm-delete', function(e) {
+        var $el = $(e.target);
+        if(!$el.data('_confirmed')) {
+            e.preventDefault();
+            e.stopPropagation();
+            swal({
+                title: "Atenção",
+                html: "Tem certeza que deseja excluir este item? <br><strong class='text-danger'>Esta ação é irreversível!</strong>",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Sim, desejo excluir!',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar'
+              }).then(function(res){
+                if(res.value){
+                    $el.data('_confirmed', true);
+                    $el.trigger(e.type);
+                }
+            })
+        }
+    });
+});

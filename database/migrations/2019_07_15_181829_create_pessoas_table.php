@@ -18,10 +18,15 @@ class CreatePessoasTable extends Migration
             $table->timestamps();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->nullable();
+            $table->string('email')->nullable();;
+            $table->string('city');
+            $table->string('state');
+            $table->string('employee');
             $table->string('job_title')->nullable();
-            $table->string('city')->nullable();   
-            $table->string('country')->nullable();
+            $table->string('cpf');
+            $table->string('phone')->nullable();
+            $table->string('childrens');
+            $table->string('social_project');
         });
     }
 

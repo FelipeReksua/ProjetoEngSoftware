@@ -26,8 +26,7 @@
 </div>
 
   <div class="row" id="geral-content">
-   <div class="col-sm-8 offset-sm-1">
-      {{-- {{dump(url()->current())}} --}}
+   <div class="col-sm-10 offset-sm-1">
       <div>
         @if ($errors->any())
           <div class="alert alert-danger">
@@ -43,8 +42,11 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Telefone</th>
+                <th scope="col">Opções</th>
               </tr>
             </thead>
 
@@ -53,16 +55,22 @@
               <tr>
                   <td>{{$loop->iteration}}</td>
                   <td>{{$pessoa->first_name}} {{$pessoa->last_name}}</td>
-                  <td>teste</td>
+                  <td>{{$pessoa->cpf}}</td>
+                  <td>{{$pessoa->city}}</td>
+                  <td>{{$pessoa->state}}</td>
+                  <td>{{$pessoa->phone}}</td>
                   <td>
-                      {{-- <a href="{{ route('contatos.edit', $pessoa->id)}}" class="btn btn-primary">Editar</a> --}}
-                  </td>
-                  <td>
-                      {{-- <form action="{{ route('contatos.destroy', $pessoa->id)}}" method="post">
+                      <a href="{{ route('ranking.edit', $pessoa->id)}}" class="btn btn-secondary">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <a href="{{ route('ranking.destroy', $pessoa->id)}}" class="btn btn-danger delete">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                      <form action="{{ route('ranking.destroy', $pessoa->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Apagar</button>
-                      </form> --}}
+                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
+                      </form>
                   </td>
               </tr>
               @endforeach
@@ -72,4 +80,35 @@
       </div>
     </div>
   </div>
+@endsection
+
+@section('js')
+<script>
+  $('.delete').on('click', function(ev){
+    ev.preventDefault();
+    console.log("aqui");
+
+    $.ajax({
+      url: '{{ route('ranking.destroy', $pessoa->id)}}',
+      type: 'DELETE',
+      dataType: 'json',
+      error: function (res) {
+          Swal({
+            type: 'error',
+            title: 'Oops...',
+            text: 'Ocorreu um erro ao excluir o cadastro.'
+          });
+          return false;
+      },
+      success: function (res){
+          Swal({
+            type: 'info',
+            title: 'Excluído!',
+            text: 'Cadastro excluído com sucesso.'
+          });
+      }
+    });
+  });
+
+</script>
 @endsection

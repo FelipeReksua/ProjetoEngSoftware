@@ -41,19 +41,31 @@ class RankedController extends Controller
     public function store(Request $request)
     {;
         $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'employee' => 'required',
+            'cpf' => 'required',
+            'childrens' => 'required|integer'
         ]);
 
-        $contato = new Pessoa([
+        $pessoa = new Pessoa([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
             'email' => $request->get('email'),
-            'job_title' => $request->get('job_title'),
             'city' => $request->get('city'),
-            'country' => $request->get('country')
+            'state' => $request->get('state'),
+            'employee' => $request->get('employee'),
+            'job_title' => $request->get('job_title'),
+            'cpf' => $request->get('cpf'),
+            'phone' => $request->get('phone'),
+            'childrens' => $request->get('childrens'),
+            'social_project' => $request->get('social_project')
         ]);
-        $contato->save();
+
+        $pessoa->save();
         return redirect('/ranking')->with(
             array(
                 'page' => 'Ranking'
@@ -80,9 +92,9 @@ class RankedController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contato::find($id);
-        if ($contact)
-            return view('contatos.edit', compact('contact'));
+        $pessoa = Pessoa::find($id);
+        if ($pessoa)
+            return view('ranking.edit', array('pessoa' => $pessoa, 'page' => 'Editar cadastro'));
         else {
             abort(404);
         }
@@ -98,24 +110,35 @@ class RankedController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required|email:rfc,dns'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'employee' => 'required',
+            'cpf' => 'required',
+            'childrens' => 'required|integer'
         ]);
 
-        $contact = Contato::find($id);
-        $contact->first_name =  $request->get('first_name');
-        $contact->last_name = $request->get('last_name');
-        $contact->email = $request->get('email');
-        $contact->job_title = $request->get('job_title');
-        $contact->city = $request->get('city');
-        $contact->country = $request->get('country');
-        $contact->save();
+        $pessoa = Pessoa::find($id);
+        $pessoa->first_name =  $request->get('first_name');
+        $pessoa->last_name = $request->get('last_name');
+        $pessoa->email = $request->get('email');
+        $pessoa->city = $request->get('city');
+        $pessoa->state = $request->get('state');
+        $pessoa->employee = $request->get('employee');
+        $pessoa->job_title = $request->get('job_title');
+        $pessoa->cpf = $request->get('cpf');
+        $pessoa->phone = $request->get('phone');
+        $pessoa->childrens = $request->get('childrens');
+        $pessoa->social_project = $request->get('social_project');
 
-        return redirect('/contatos')->with(
+        $pessoa->save();
+
+        return redirect('/ranking')->with(
             array(
                 'page' => 'Ranking',
-                'success' => 'Contato atualizado!'
+                'success' => 'Cadastro atualizado!'
             )
         );
     }
@@ -128,9 +151,9 @@ class RankedController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Contato::find($id);
-        $contact->delete();
+        $pessoa = Pessoa::find($id);
+        $pessoa->delete();
 
-        return redirect('/contatos')->with('success', 'Contato apagado!');
+        return redirect('/ranking')->with('success', 'Cadastro deletado!');
     }
 }

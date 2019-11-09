@@ -11,7 +11,12 @@ class Pessoa extends Model
         'last_name',
         'email',
         'city',
-        'country',
-        'job_title'       
+        'state',
+        'employee',
+        'job_title',
+        'cpf',
+        'phone',
+        'childrens',  
+        'social_project'     
     ];
 }
