@@ -17,6 +17,8 @@ class Pessoa extends Model
         'cpf',
         'phone',
         'childrens',  
-        'social_project'     
+        'social_project',
+        'renda',
+        'contemplado'
     ];
 }

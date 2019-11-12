@@ -37,14 +37,15 @@
             </ul>
           </div><br />
         @endif
+        @if(count($pessoas) >= 1)
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">Pontuação</th>
                 <th scope="col">Nome</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Cidade</th>
-                <th scope="col">Estado</th>
+                <th scope="col">Renda</th>
+                <th scope="col">Cidade/UF</th>
                 <th scope="col">Telefone</th>
                 <th scope="col">Opções</th>
               </tr>
@@ -54,29 +55,48 @@
               @foreach($pessoas as $idx => $pessoa)
               <tr>
                   <td>{{$loop->iteration}}</td>
-                  <td>{{$pessoa->first_name}} {{$pessoa->last_name}}</td>
                   <td>{{$pessoa->cpf}}</td>
-                  <td>{{$pessoa->city}}</td>
-                  <td>{{$pessoa->state}}</td>
+                  <td>{{$pessoa->first_name}} {{$pessoa->last_name}}</td>
+                  <td>R$ {{number_format($pessoa->renda, 2, ',', '.')}}</td>
+                  <td>{{$pessoa->city}}/{{$pessoa->state}}</td>
                   <td>{{$pessoa->phone}}</td>
                   <td>
-                      <a href="{{ route('ranking.edit', $pessoa->id)}}" class="btn btn-secondary">
-                        <i class="fas fa-edit"></i>
-                      </a>
-                      <a href="{{ route('ranking.destroy', $pessoa->id)}}" class="btn btn-danger delete">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                      <form action="{{ route('ranking.destroy', $pessoa->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-                      </form>
+
+                    <div class="row">
+                      <div class="col-md-4 text-right p-0">
+                        <a href="{{ route('ranking.edit', $pessoa->id)}}" class="btn btn-secondary">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                      </div>
+                      
+                      <div class="col-md-4 text-center p-0">
+                        <form action="{{ route('ranking.destroy', $pessoa->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger delete" type="submit">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </form>
+                      </div>
+
+                      <div class="col-md-4 text-left p-0">
+                        <a href="#" class="btn btn-info">
+                          <i class="fas fa-gift"></i>
+                        </a>
+                      </div>
+
+                    </div>
                   </td>
               </tr>
               @endforeach
             </tbody>
-
           </table>
+
+          @else
+            <div class="alert alert-info" role="alert">
+              <i class="mdi mdi-alert-circle-outline mr-2"></i> Nenhum resultado encontrado!
+            </div>
+          @endif
       </div>
     </div>
   </div>
@@ -84,30 +104,39 @@
 
 @section('js')
 <script>
-  $('.delete').on('click', function(ev){
-    ev.preventDefault();
-    console.log("aqui");
+  // $('.delete').on('click', function(ev){
+  //   ev.preventDefault();
+  //   var id = $(this).data('id');
+  //   console.log(id);
+  //   console.log("here");
 
-    $.ajax({
-      url: '{{ route('ranking.destroy', $pessoa->id)}}',
-      type: 'DELETE',
-      dataType: 'json',
-      error: function (res) {
-          Swal({
-            type: 'error',
-            title: 'Oops...',
-            text: 'Ocorreu um erro ao excluir o cadastro.'
-          });
-          return false;
-      },
-      success: function (res){
-          Swal({
-            type: 'info',
-            title: 'Excluído!',
-            text: 'Cadastro excluído com sucesso.'
-          });
-      }
-    });
+  //   $.ajax({
+  //     url: '/ranking/' + id,
+  //     type: 'DELETE',
+  //     dataType: 'json',
+  //     error: function (res) {
+  //         Swal({
+  //           type: 'error',
+  //           title: 'Oops...',
+  //           text: 'Ocorreu um erro ao excluir o cadastro.'
+  //         });
+  //         return false;
+  //     },
+  //     success: function (res){
+  //         Swal({
+  //           type: 'info',
+  //           title: 'Excluído!',
+  //           text: 'Cadastro excluído com sucesso.'
+  //         });
+  //     }
+  //   });
+  // });
+
+  $('.delete').on('click', function(ev){
+    if (!confirm("Tem certeza que deseja excluir esse cadastro?")) {
+      ev.preventDefault();
+      return;
+    }
   });
 
 </script>

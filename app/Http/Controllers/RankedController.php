@@ -51,6 +51,10 @@ class RankedController extends Controller
             'childrens' => 'required|integer'
         ]);
 
+        $source = array('.', ','); 
+        $replace = array('', '.');
+        $valor = str_replace($source, $replace, $request->get('renda'));
+
         $pessoa = new Pessoa([
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
@@ -60,6 +64,7 @@ class RankedController extends Controller
             'employee' => $request->get('employee'),
             'job_title' => $request->get('job_title'),
             'cpf' => $request->get('cpf'),
+            'renda' => $valor,
             'phone' => $request->get('phone'),
             'childrens' => $request->get('childrens'),
             'social_project' => $request->get('social_project')
@@ -129,6 +134,7 @@ class RankedController extends Controller
         $pessoa->employee = $request->get('employee');
         $pessoa->job_title = $request->get('job_title');
         $pessoa->cpf = $request->get('cpf');
+        $pessoa->renda = $request->get('renda');
         $pessoa->phone = $request->get('phone');
         $pessoa->childrens = $request->get('childrens');
         $pessoa->social_project = $request->get('social_project');

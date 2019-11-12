@@ -1,6 +1,15 @@
 @extends('layouts.main')
 
-@section('content')
+@section('js')
+<script>
+  $(function(){
+    $('.mask-money').maskMoney(
+      {symbol:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false}
+    );
+  });
+</script>
+@endsection
+
 @extends('layouts.topbar')
 
 @section('content')
@@ -50,9 +59,14 @@
                     <input type="text" required class="form-control" name="last_name" value="{{ old('last_name') }}"/>
                 </div>
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-8">
                     <label for="email">Email:</label>
                     <input type="text" class="form-control" name="email" value="{{ old('email') }}"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="renda">Renda:</label>
+                    <input type="text" class="form-control mask-money" name="renda" value="{{ old('renda') }}"/>
                 </div>
 
                 <div class="form-group col-md-5">
@@ -104,13 +118,13 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-9">
                     <label for="city">Cidade:</label>
                     <input type="text" required class="form-control" name="city" value="{{ old('city') }}"/>
                 </div>
 
                 <div class="form-group col-md-3">
-                    <label for="social_project">Outro projeto social:</label>
+                    <label for="social_project">Outro projeto social?</label>
                     <select required class="form-control" name="social_project">
                       <option value="Sim">Sim</option>
                       <option value="Não">Não</option>
@@ -118,7 +132,7 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                    <label for="employee">Empregado:</label>
+                    <label for="employee">Empregado?</label>
                     <select required class="form-control" name="employee">
                       <option value="Sim">Sim</option>
                       <option value="Não">Não</option>

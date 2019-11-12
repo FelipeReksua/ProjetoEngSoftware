@@ -229,3 +229,7 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+
+.p-0 {
+  padding: 0px;
+}

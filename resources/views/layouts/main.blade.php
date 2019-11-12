@@ -4,6 +4,7 @@
     <title>People Ranked</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
+    <script src="{{ asset('js/jquery.maskMoney.js') }}" type="text/javascript"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     
     <!--Fontawesome CDN-->
@@ -15,6 +16,7 @@
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+
 
     @hasSection('css')
         @yield('css')
