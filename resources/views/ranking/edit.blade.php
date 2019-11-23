@@ -6,6 +6,8 @@
     $('.mask-money').maskMoney(
       {symbol:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false}
     );
+    $('.mask-cpf').mask('000.000.000-00', {reverse: true});
+    $(".mask-phone").mask("(00) 0000-00009");
   });
 </script>
 @endsection
@@ -73,12 +75,12 @@
 
                 <div class="form-group col-md-5">
                     <label for="cpf">CPF:</label>
-                    <input type="text" required class="form-control" name="cpf" value="{{ old('cpf', $pessoa->cpf) }}"/>
+                    <input type="text" required class="form-control mask-cpf" name="cpf" value="{{ old('cpf', $pessoa->cpf) }}"/>
                 </div>
 
                 <div class="form-group col-md-5">
                     <label for="phone">Telefone:</label>
-                    <input type="text" class="form-control" name="phone" value="{{ old('phone', $pessoa->phone) }}"/>
+                    <input type="text" class="form-control mask-phone" name="phone" value="{{ old('phone', $pessoa->phone) }}"/>
                 </div>
 
                 <div class="form-group col-md-2">

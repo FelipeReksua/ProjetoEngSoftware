@@ -4,9 +4,10 @@
     <title>People Ranked</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.min.js"></script>
     <script src="{{ asset('js/jquery.maskMoney.js') }}" type="text/javascript"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    
+
     <!--Fontawesome CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
@@ -16,7 +17,7 @@
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @hasSection('css')
         @yield('css')

@@ -15,9 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::resource('containsatos', 'ContatoController');
 Route::get('/ranking/cadastro', 'RankedController@cadastro');
 Route::resource('ranking', 'RankedController');
+
+Route::post('contemplados/contemplar', ['as' => 'contemplar', 'uses' => 'ContempladoController@contemplar']);
+
+// Route::post('/contemplados/contemplar', 'ContempladoController@contemplar');
+// Route::resource('contemplados', 'ContempladoController');
 
 // Route::group(['middleware' => 'auth',], function () {
 // Route::group([], function () {

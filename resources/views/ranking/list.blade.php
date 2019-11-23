@@ -46,7 +46,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Renda</th>
                 <th scope="col">Cidade/UF</th>
-                <th scope="col">Telefone</th>
+                {{-- <th scope="col">Telefone</th> --}}
                 <th scope="col">Opções</th>
               </tr>
             </thead>
@@ -59,7 +59,7 @@
                   <td>{{$pessoa->first_name}} {{$pessoa->last_name}}</td>
                   <td>R$ {{number_format($pessoa->renda, 2, ',', '.')}}</td>
                   <td>{{$pessoa->city}}/{{$pessoa->state}}</td>
-                  <td>{{$pessoa->phone}}</td>
+                  {{-- <td>{{$pessoa->phone}}</td> --}}
                   <td>
 
                     <div class="row">
@@ -80,7 +80,7 @@
                       </div>
 
                       <div class="col-md-4 text-left p-0">
-                        <a href="#" class="btn btn-info">
+                        <a href="#" class="btn btn-info contemplar">
                           <i class="fas fa-gift"></i>
                         </a>
                       </div>
@@ -131,6 +131,70 @@
   //     }
   //   });
   // });
+
+  $('.contemplar').on('click', function(ev){
+      Swal.fire({
+        title: 'Contemplar pessoa',
+        text: "Por favor, informe qual é o benefício/prêmio ao contemplado!",
+        // type: 'question',
+        input: 'textarea',
+        backdrop: `
+            rgba(0,0,123,0.4)
+            url("/images/nyan-cat.gif")
+            left top
+            no-repeat
+          `,
+        confirmButtonColor: '#3085d6',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar ',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.dismiss) {
+          Swal.fire(
+            'Cancelado!',
+            'Pessoa não contemplada.',
+            'info'
+          )
+        } else if (result.value && result.value.trim()) {
+          var data = {
+            beneficio: result.value.trim()
+          }
+          return $.ajax({
+            url: '/contemplados/contemplar',
+            method: 'POST',
+            data: data,
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function() {
+              Swal.fire(
+                'Sucesso!',
+                'Pessoa contemplada!',
+                'success'
+              )
+              .then(function(){
+                document.location.href = '/ranking';
+              })
+            },
+            error: function(){
+              Swal.fire(
+                'Erro!',
+                'Ocorreu um erro ao concluir.',
+                'error'
+              )
+            }
+          });
+            
+        } else if (!result.value || result.value.trim() == '') {
+          Swal.fire(
+            'Atenção!',
+            'Você precisa informar o benefício/prêmio',
+            'warning'
+          )
+        }
+      })
+  });
 
   $('.delete').on('click', function(ev){
     if (!confirm("Tem certeza que deseja excluir esse cadastro?")) {
