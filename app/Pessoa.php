@@ -19,6 +19,7 @@ class Pessoa extends Model
         'childrens',  
         'social_project',
         'renda',
+        'pontos',
         'contemplado'
     ];
 }

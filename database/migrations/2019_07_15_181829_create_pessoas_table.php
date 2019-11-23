@@ -26,6 +26,7 @@ class CreatePessoasTable extends Migration
             $table->string('cpf');
             $table->string('phone')->nullable();
             $table->integer('childrens');
+            $table->integer('pontos')->default(0);;
             $table->string('social_project');
             $table->decimal('renda', 12, 2)->default(0,00);
             $table->boolean('contemplado')->default(false);

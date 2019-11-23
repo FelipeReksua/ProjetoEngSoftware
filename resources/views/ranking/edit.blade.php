@@ -1,5 +1,15 @@
 @extends('layouts.main')
 
+@section('js')
+<script>
+  $(function(){
+    $('.mask-money').maskMoney(
+      {symbol:'R$ ', allowNegative: false, thousands:'.', decimal:',', affixesStay: false}
+    );
+  });
+</script>
+@endsection
+
 @section('content')
 @extends('layouts.topbar')
 
@@ -38,6 +48,7 @@
           </div><br />
         @endif
           <form method="post" action="{{ route('ranking.update', $pessoa->id) }}">
+              @method('PATCH') 
               @csrf
               <div class="row mb-4">
                 <div class="form-group col-md-12">    
@@ -50,9 +61,14 @@
                     <input type="text" required class="form-control" name="last_name" value="{{ old('last_name', $pessoa->last_name) }}"/>
                 </div>
 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-8">
                     <label for="email">Email:</label>
-                    <input type="text" class="form-control" name="email" value="{{ old('email', $pessoa->email) }}"/>
+                    <input type="email" class="form-control" name="email" value="{{ old('email', $pessoa->email) }}"/>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="renda">Renda:</label>
+                    <input type="text" class="form-control mask-money" name="renda" value="{{ number_format(old('renda', $pessoa->renda), 2, ',', '.') }}"/>
                 </div>
 
                 <div class="form-group col-md-5">
@@ -104,13 +120,13 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-9">
                     <label for="city">Cidade:</label>
                     <input type="text" required class="form-control" name="city" value="{{ old('city', $pessoa->city) }}"/>
                 </div>
 
                 <div class="form-group col-md-3">
-                    <label for="social_project">Outro projeto social:</label>
+                    <label for="social_project">Outro projeto social?</label>
                     <select required class="form-control" name="social_project">
                       <option value="Sim" @if(old('social_project') == 'Sim' || $pessoa->social_project == 'Sim') selected @endif>
                         Sim
@@ -122,7 +138,7 @@
                 </div>
 
                 <div class="form-group col-md-3">
-                    <label for="employee">Empregado:</label>
+                    <label for="employee">Empregado?</label>
                     <select required class="form-control" name="employee">
                       <option value="Sim" @if(old('employee') == 'Sim' || $pessoa->employee == 'Sim') selected @endif>Sim</option>
                       <option value="Não" @if(old('employee') == 'Não' || $pessoa->employee == 'Não') selected @endif>Não</option>
@@ -142,7 +158,7 @@
                   </a>
                 </div>                    
                 <div class="text-right col-md-6">
-                  <button type="submit" class="btn btn-primary">Adicionar pessoa</button>
+                  <button type="submit" class="btn btn-primary">Salvar alterações</button>
                 </div>                    
               </div>
 
@@ -151,61 +167,3 @@
     </div>
   </div>
 @endsection
-
-
-
-
-
-
-{{-- @extends('base') 
-@section('main')
-<div class="row">
-    <div class="col-sm-8 offset-sm-2">
-        <h1 class="display-3">Atualizar contato</h1>
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        <br /> 
-        @endif
-        <form method="post" action="{{ route('ranking.update', $pessoa->id) }}">
-            @method('PATCH') 
-            @csrf
-            <div class="form-group">
-
-                <label for="first_name">Nome:</label>
-                <input type="text" class="form-control" name="first_name" value={{ old('first_name', $pessoa->first_name) }} />
-            </div>
-
-            <div class="form-group">
-                <label for="last_name">Sobrenome:</label>
-                <input type="text" class="form-control" name="last_name" value={{ old('last_name', $pessoa->last_name) }} />
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" class="form-control" name="email" value={{ old('email', $pessoa->email) }} />
-            </div>
-            <div class="form-group">
-                <label for="city">Cidade:</label>
-                <input type="text" class="form-control" name="city" value={{ old('city', $pessoa->city) }} />
-            </div>
-            <div class="form-group">
-                <label for="country">País:</label>
-                <input type="text" class="form-control" name="country" value={{ old('country', $pessoa->country) }} />
-            </div>
-            <div class="form-group">
-                <label for="job_title">Profissão:</label>
-                <input type="text" class="form-control" name="job_title" value={{ old('job_title', $pessoa->job_title) }} />
-            </div>
-            <button type="submit" class="btn btn-primary">Atualizar</button>
-            <a href="{{ route('ranking.index') }}" class="btn btn-warning">Cancelar</a>
-        </form>
-    </div>
-</div>
-@endsection --}}

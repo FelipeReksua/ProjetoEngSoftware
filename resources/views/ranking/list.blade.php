@@ -54,8 +54,8 @@
             <tbody>
               @foreach($pessoas as $idx => $pessoa)
               <tr>
-                  <td>{{$loop->iteration}}</td>
-                  <td>{{$pessoa->cpf}}</td>
+                  <td>{{$loop->iteration}}º</td>
+                  <td>{{$pessoa->pontos}}</td>
                   <td>{{$pessoa->first_name}} {{$pessoa->last_name}}</td>
                   <td>R$ {{number_format($pessoa->renda, 2, ',', '.')}}</td>
                   <td>{{$pessoa->city}}/{{$pessoa->state}}</td>

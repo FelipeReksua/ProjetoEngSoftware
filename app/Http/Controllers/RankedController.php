@@ -51,9 +51,26 @@ class RankedController extends Controller
             'childrens' => 'required|integer'
         ]);
 
-        $source = array('.', ','); 
+        $source = array('.', ',');
         $replace = array('', '.');
         $valor = str_replace($source, $replace, $request->get('renda'));
+
+        $pontos = 0;
+
+        foreach (range(100000, 0, 200) as $idx => $number) {
+            if ($valor <= $number && $valor >= $number - 200) {
+                $pontos = $idx * 5;
+                continue;
+            }
+        }
+
+        if ($request->get('childrens') > 0) {
+            $pontos = $pontos + $request->get('childrens') * 10;
+        }
+
+        if ($request->get('social_project') == 'Sim') {
+            $pontos = $pontos + 20;
+        }
 
         $pessoa = new Pessoa([
             'first_name' => $request->get('first_name'),
@@ -64,6 +81,7 @@ class RankedController extends Controller
             'employee' => $request->get('employee'),
             'job_title' => $request->get('job_title'),
             'cpf' => $request->get('cpf'),
+            'pontos' => $pontos,
             'renda' => $valor,
             'phone' => $request->get('phone'),
             'childrens' => $request->get('childrens'),
@@ -125,6 +143,28 @@ class RankedController extends Controller
             'childrens' => 'required|integer'
         ]);
 
+        $source = array('.', ',');
+        $replace = array('', '.');
+        $valor = str_replace($source, $replace, $request->get('renda'));
+
+        $pontos = 0;
+
+        $pontos = 0;
+        foreach (range(100000, 0, 200) as $idx => $number) {
+            if ($valor <= $number && $valor >= $number - 200) {
+                $pontos = $idx * 5;
+                continue;
+            }
+        }
+
+        if ($request->get('childrens') > 0) {
+            $pontos = $pontos + $request->get('childrens') * 10;
+        }
+
+        if ($request->get('social_project') == 'Sim') {
+            $pontos = $pontos + 20;
+        }
+
         $pessoa = Pessoa::find($id);
         $pessoa->first_name =  $request->get('first_name');
         $pessoa->last_name = $request->get('last_name');
@@ -134,7 +174,8 @@ class RankedController extends Controller
         $pessoa->employee = $request->get('employee');
         $pessoa->job_title = $request->get('job_title');
         $pessoa->cpf = $request->get('cpf');
-        $pessoa->renda = $request->get('renda');
+        $pessoa->renda = $valor;
+        $pessoa->pontos = $pontos;
         $pessoa->phone = $request->get('phone');
         $pessoa->childrens = $request->get('childrens');
         $pessoa->social_project = $request->get('social_project');
