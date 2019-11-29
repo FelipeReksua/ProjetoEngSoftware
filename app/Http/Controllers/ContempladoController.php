@@ -13,7 +13,7 @@ class ContempladoController extends Controller
      */
     public function contemplar(Request $request)
     {
-        dump('aqi');
+        dump('aqui');
         dump($request->get('beneficio'));
         
         die();

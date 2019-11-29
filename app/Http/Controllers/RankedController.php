@@ -149,8 +149,7 @@ class RankedController extends Controller
 
         $pontos = 0;
 
-        $pontos = 0;
-        foreach (range(100000, 0, 200) as $idx => $number) {
+        foreach (range(100200, 0, 200) as $idx => $number) {
             if ($valor <= $number && $valor >= $number - 200) {
                 $pontos = $idx * 5;
                 continue;
