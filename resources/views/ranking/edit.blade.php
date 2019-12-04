@@ -50,7 +50,7 @@
           </div><br />
         @endif
           <form method="post" action="{{ route('ranking.update', $pessoa->id) }}">
-              @method('PATCH') 
+              @method('PATCH')
               @csrf
               <div class="row mb-4">
                 <div class="form-group col-md-12">    

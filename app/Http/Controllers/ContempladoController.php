@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Contemplado;
 
 class ContempladoController extends Controller
 {
@@ -13,10 +14,22 @@ class ContempladoController extends Controller
      */
     public function contemplar(Request $request)
     {
-        dump('aqui');
-        dump($request->get('beneficio'));
-        
-        die();
+        $contemplado = new Contemplado([
+            'data' => new \DateTime(),
+            'pessoa_id' => $request->get('pessoa_id'),
+            'beneficio' => $request->get('beneficio')
+        ]);
+
+        $pessoa = $contemplado->pessoa;
+        $pessoa->contemplado = true;
+
+        $contemplado->save();
+        $pessoa->save();
+        return redirect('/ranking')->with(
+            array(
+                'page' => 'Ranking'
+            )
+        );
     }
 
     /**
@@ -28,5 +41,21 @@ class ContempladoController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $contemplados = Contemplado::all();
+        return view('ranking.contemplados')->with(
+            array(
+                'page' => 'Contemplados',
+                'contemplados' => $contemplados
+            )
+        );
     }
 }

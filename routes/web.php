@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/ranking/cadastro', 'RankedController@cadastro');
+Route::get('/ranking/contemplados', 'ContempladoController@index');
 Route::resource('ranking', 'RankedController');
 
 Route::post('contemplados/contemplar', ['as' => 'contemplar', 'uses' => 'ContempladoController@contemplar']);

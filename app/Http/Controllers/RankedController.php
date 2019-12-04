@@ -14,7 +14,7 @@ class RankedController extends Controller
      */
     public function index()
     {
-        $pessoas = Pessoa::all();
+        $pessoas = Pessoa::where('contemplado', false)->get();
         return view('ranking.list')->with(
             array(
                 'page' => 'Ranking',

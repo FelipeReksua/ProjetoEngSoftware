@@ -59,7 +59,6 @@
                   <td>{{$pessoa->first_name}} {{$pessoa->last_name}}</td>
                   <td>R$ {{number_format($pessoa->renda, 2, ',', '.')}}</td>
                   <td>{{$pessoa->city}}/{{$pessoa->state}}</td>
-                  {{-- <td>{{$pessoa->phone}}</td> --}}
                   <td>
 
                     <div class="row">
@@ -80,7 +79,7 @@
                       </div>
 
                       <div class="col-md-4 text-left p-0">
-                        <a href="#" class="btn btn-info contemplar">
+                        <a href="#" class="btn btn-info contemplar" data-id="{{$pessoa->id}}">
                           <i class="fas fa-gift"></i>
                         </a>
                       </div>
@@ -133,10 +132,11 @@
   // });
 
   $('.contemplar').on('click', function(ev){
+      var id = $(this).data('id');
       Swal.fire({
         title: 'Contemplar pessoa',
-        text: "Por favor, informe qual é o benefício/prêmio ao contemplado!",
-        // type: 'question',
+        // text: "Por favor, informe qual é o benefício/prêmio ao contemplado!",
+        html: "Por favor, informe qual é o benefício/prêmio ao contemplado!",
         input: 'textarea',
         backdrop: `
             rgba(0,0,123,0.4)
@@ -158,7 +158,8 @@
           )
         } else if (result.value && result.value.trim()) {
           var data = {
-            beneficio: result.value.trim()
+            beneficio: result.value.trim(),
+            pessoa_id: id
           }
           return $.ajax({
             url: '/contemplados/contemplar',
