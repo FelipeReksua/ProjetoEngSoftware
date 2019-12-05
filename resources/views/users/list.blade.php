@@ -42,31 +42,41 @@
             </ul>
           </div><br />
         @endif
-        @if(count($contemplados) >= 1)
+        @if(count($usuarios) >= 1)
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Data</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Benefício</th>
-                <th scope="col">Excluir</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Opções</th>
               </tr>
             </thead>
 
             <tbody>
-              @foreach($contemplados as $contemplado)
+              @foreach($usuarios as $idx => $usuario)
               <tr>
-                  <td>{{date('d/m/Y', strtotime($contemplado->created_at))}}</td>
-                  <td>{{$contemplado->pessoa['first_name']}} {{$contemplado->pessoa['last_name']}}</td>
-                  <td>{{$contemplado->beneficio}}</td>
+                  <td>{{$usuario->name}}</td>
+                  <td>{{$usuario->email}}</td>
                   <td>
-                    <form action="{{ route('contemplado.destroy', $contemplado->id)}}" method="post">
-                      @csrf
-                      @method('DELETE')
-                      <button class="btn btn-danger delete" type="submit">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    </form>
+
+                    <div class="row">
+                      <div class="col-md-6 text-right p-0">
+                        <a href="{{ route('users.edit', $usuario->id)}}" class="btn btn-secondary">
+                          <i class="fas fa-edit"></i>
+                        </a>
+                      </div>
+                      
+                      <div class="col-md-6 text-center p-0">
+                        <form action="{{ route('users.destroy', $usuario->id)}}" method="post">
+                          @csrf
+                          @method('DELETE')
+                          <button class="btn btn-danger delete" type="submit">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </form>
+                      </div>
+
+                    </div>
                   </td>
               </tr>
               @endforeach

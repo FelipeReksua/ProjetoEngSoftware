@@ -17,7 +17,12 @@ Route::get('/', function () {
 
 Route::get('/ranking/cadastro', 'RankedController@cadastro');
 Route::get('/ranking/contemplados', 'ContempladoController@index');
+
+Route::get('/users', 'UserController@index')->name('index');
+
 Route::resource('ranking', 'RankedController');
+Route::resource('contemplado', 'ContempladoController');
+Route::resource('users', 'UserController');
 
 Route::post('contemplados/contemplar', ['as' => 'contemplar', 'uses' => 'ContempladoController@contemplar']);
 
@@ -32,3 +37,7 @@ Route::post('contemplados/contemplar', ['as' => 'contemplar', 'uses' => 'Contemp
 // 		Route::post('/store', ["uses" => 'RankedController@store', "as" => "store"]);
 // 	});
 // });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

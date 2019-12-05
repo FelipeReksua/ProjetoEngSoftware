@@ -32,22 +32,6 @@ class ContempladoController extends Controller
         );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $contemplados = Contemplado::all();
@@ -57,5 +41,13 @@ class ContempladoController extends Controller
                 'contemplados' => $contemplados
             )
         );
+    }
+
+    public function destroy($id)
+    {
+        $contemplado = Contemplado::find($id);
+        $contemplado->delete();
+
+        return redirect('/ranking/contemplados')->with('success', 'Cadastro deletado!');
     }
 }

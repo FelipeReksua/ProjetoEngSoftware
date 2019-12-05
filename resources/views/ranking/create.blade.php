@@ -33,6 +33,11 @@
         <i class="zmdi zmdi-widgets"></i> Contemplados
       </a>
     </li>
+    <li>
+      <a href="/users">
+        <i class="zmdi zmdi-widgets"></i> Usuários
+      </a>
+    </li>
   </ul>
 </div>
 
