@@ -34,6 +34,9 @@ class UserController extends Controller
         if (!Auth::user()) {
             return redirect('/');
         }
+
+        $user = User::find($id);
+
         if (Auth::user()->email == $request->get('email')) {
             $this->validate(request(), [
                 'name' => 'required',
@@ -43,12 +46,12 @@ class UserController extends Controller
         } else {
             $this->validate(request(), [
                 'name' => 'required',
-                'email' => 'email|required|unique:users',
+                // 'email' => 'email|required|unique:users',
+                'email' => 'email|required|unique:users,email,'.$user->id,
                 'password' => 'required|min:6|confirmed'
             ]);
         }
         
-        $user = User::find($id);
 
         $user->name = $request->get('name');
         $user->email = $request->get('email');

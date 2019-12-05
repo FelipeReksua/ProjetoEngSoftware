@@ -18,8 +18,24 @@ body {
   transition: all 0.5s ease;
 }
 
+.text-left{
+  text-align: left;
+}
+
+.text-right{
+  text-align: right !important;
+}
+
 .btn-warning{
   color: #FFF;
+}
+
+.ggrey, .text-grey:hover, .text-grey:active{
+  color: #bbb;
+}
+
+.text-20{
+  font-size: 20px;
 }
 
 #content {

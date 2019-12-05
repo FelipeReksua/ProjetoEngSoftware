@@ -48,7 +48,7 @@
               <tr>
                 <th scope="col">Nome</th>
                 <th scope="col">E-mail</th>
-                <th scope="col">Opções</th>
+                <th scope="col" style="text-align: right;">Opções</th>
               </tr>
             </thead>
 

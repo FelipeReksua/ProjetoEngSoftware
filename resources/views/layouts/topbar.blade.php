@@ -8,7 +8,7 @@
 
 
     <div class="col-md-7">
-  		<h4>{{ $page }}</h4>
+  		<h4 class="text-20">{{ $page }}</h4>
 	</div>
 
     <div class="col-md-2 text-right">
