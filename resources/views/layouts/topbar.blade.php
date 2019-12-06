@@ -7,12 +7,12 @@
 	</div>
 
 
-    <div class="col-md-6">
+    <div class="col-md-5">
   		<h4 class="text-20">{{ $page }}</h4>
 	</div>
 
-    <div class="col-md-3 text-right">
-    	<ul class="navbar-nav ml-auto text">
+    <div class="col-md-4 text-right">
+    	<ul class="navbar-nav ml-auto text" style="float: right; margin-right: 40px;">
             <!-- Authentication Links -->
             @guest
                 <li class="nav-item">
