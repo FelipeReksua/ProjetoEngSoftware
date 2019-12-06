@@ -4,7 +4,8 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Pessoa;
+use Illuminate\Foundation\Testing\WithFaker;
+use \App\Pessoa;
 
 class PessoasTest extends TestCase
 {
@@ -27,7 +28,7 @@ class PessoasTest extends TestCase
      *
      * @return void
      */
-    public function testPaginaPessoas()
+    public function testPaginaRanking()
     {
         //criar 3 pessoas
         $pessoa = factory(Pessoa::class, 3)->create();
@@ -55,12 +56,11 @@ class PessoasTest extends TestCase
      *
      * @return void
      */
-    public function testNaoPaginaEditar()
+    public function testPaginaNaoEditar()
     {
         //Tentar editar um pessoa que não existe
-        $id=0;
+        $id = 0;
         $response = $this->get("/ranking/$id/edit");
-
         $response->assertStatus(404);
     }
 
@@ -69,7 +69,7 @@ class PessoasTest extends TestCase
      *
      * @return void
      */
-    public function testApagarContato()
+    public function testApagarPessoa()
     {
         //Apagar um cadastro
         $pessoa = factory(Pessoa::class)->create();

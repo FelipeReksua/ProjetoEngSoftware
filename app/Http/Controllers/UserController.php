@@ -19,6 +19,15 @@ class UserController extends Controller
         );
     }
 
+    public function cadastro()
+    {
+        return view('users.create')->with(
+            array(
+                'page' => 'Cadastrar usuário'
+            )
+        );
+    }
+
     public function edit($id)
     {
         $usuario = User::find($id);

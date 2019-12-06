@@ -7,11 +7,11 @@
 	</div>
 
 
-    <div class="col-md-7">
+    <div class="col-md-6">
   		<h4 class="text-20">{{ $page }}</h4>
 	</div>
 
-    <div class="col-md-2 text-right">
+    <div class="col-md-3 text-right">
     	<ul class="navbar-nav ml-auto text">
             <!-- Authentication Links -->
             @guest
@@ -39,7 +39,7 @@
                             @csrf
                         </form>
 
-                        <a class="dropdown-item" href="{{ route('register') }}">
+                        <a class="dropdown-item" href="/users/cadastro">
                             Adicionar
                         </a>
                     </div>

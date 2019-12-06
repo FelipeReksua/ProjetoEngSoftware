@@ -42,18 +42,8 @@
   <div class="row" id="geral-content">
    <div class="col-sm-8 offset-sm-1">
       <div>
-        @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-          </div><br />
-        @endif
-          <form method="post" action="{{ route('users.update', $usuario->id) }}">
-              @method('PATCH')
-              @csrf
+          <form method="POST" action="{{ route('register') }}">
+            @csrf
               <div class="row mb-4">
                 <div class="form-group col-md-12">    
                     <label for="name">Nome:</label>
@@ -103,7 +93,7 @@
                   </a>
                 </div>                    
                 <div class="text-right col-md-6">
-                  <button type="submit" class="btn btn-primary">Salvar alterações</button>
+                  <button type="submit" class="btn btn-primary">Salvar</button>
                 </div>                    
               </div>
 
